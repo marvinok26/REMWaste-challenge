@@ -6,7 +6,7 @@ Hey there! 👋 This is my take on REMWaste's frontend coding challenge. I was a
 
 So the challenge was to redesign the "choose your skip size" page from their website. If you want to see the original, just go to wewantwaste.co.uk, enter postcode "LE10 1SH", pick an address, select "garden waste", and you'll land on the page I redesigned.
 
-**Live Demo:** [Your sandbox link here]  
+**Live Demo:** https://sandbox-remwaste.vercel.app 
 **Code:** https://github.com/marvinok26/REMWaste-challenge
 
 ## The Challenge Brief
