@@ -1,55 +1,110 @@
-# React + TypeScript + Vite
+# REMWaste Skip Selection Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hey there! 👋 This is my take on REMWaste's frontend coding challenge. I was asked to redesign their skip selection page. This was really fun.
 
-Currently, two official plugins are available:
+## What I Built
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+So the challenge was to redesign the "choose your skip size" page from their website. If you want to see the original, just go to wewantwaste.co.uk, enter postcode "LE10 1SH", pick an address, select "garden waste", and you'll land on the page I redesigned.
 
-## Expanding the ESLint configuration
+**Live Demo:** [Your sandbox link here]  
+**Code:** https://github.com/marvinok26/REMWaste-challenge
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## The Challenge Brief
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+REMWaste wanted me to:
+- Completely redesign their skip selection page (make it look totally different)
+- Keep all the functionality working
+- Make it responsive for mobile and desktop
+- Use their API for skip data
+- Write clean React code
+
+## My Approach
+
+I went for a complete visual overhaul. The original has this dark theme with basic cards, so I decided to go bright and modern with:
+
+- **3D-style yellow skip containers** that actually look like real skips
+- **Category filtering** - I grouped skips into Residential, Commercial, and Industrial because that's how people actually think about their projects
+- **Smooth animations** throughout - hover effects, loading states, the works
+- **Mobile-first design** - works great on phones and scales up beautifully
+
+## What's Different
+
+### Visually
+- Scrapped the dark theme for a clean, gradient-based design
+- Added realistic 3D skip visualizations (those yellow containers actually tilt when you hover!)
+- Color-coded everything by category
+- Made the whole experience feel more premium
+
+### Functionally  
+- Added smart filtering so you can find the right skip faster
+- Better information hierarchy - prices are more prominent, restrictions are clearer
+- Loading states that don't feel jarring
+- Mobile experience that actually works well (not just "responsive")
+
+## Tech Stack
+
+Nothing fancy here - just solid choices:
+- **React 19** with TypeScript (functional components, hooks)
+- **Tailwind CSS** for styling
+- **Vite** for development
+- **Lucide React** for icons
+
+## Running It Locally
+
+```bash
+git clone git@github.com:marvinok26/REMWaste-challenge.git
+cd REMWaste-challenge
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Then open http://localhost:5173 and you're good to go!
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## The Data Integration
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+I'm pulling real data from their API:
 ```
-# REMWaste-challenge
+https://app.wewantwaste.co.uk/api/skips/by-location?postcode=NR32&area=Lowestoft
+```
+
+The component handles loading states, errors (gracefully), and all the business logic like VAT calculations and restriction rules.
+
+## Design Decisions
+
+### Why Categories?
+I noticed the skip sizes naturally fall into three groups based on typical use cases:
+- **Residential (4-8 yards):** Home projects, can go on the road
+- **Commercial (10-16 yards):** Bigger jobs, private property only
+- **Industrial (20+ yards):** Major projects, different pricing model
+
+### Why 3D Skips?
+The original just had photos. I wanted something more engaging that would help users visualize what they're getting. The 3D containers are fun but also functional - they show relative sizes clearly.
+
+### Mobile Strategy
+Started mobile-first because honestly, a lot of people are probably booking skips on their phones. The filter tabs become icons on small screens, the grid adjusts naturally, and the bottom navigation works better than the original on touch devices.
+
+## Challenges I Solved
+
+1. **Performance:** Had to remove some staggered animations that were causing page flicker when filtering
+2. **Responsiveness:** Made sure everything scales properly - not just "doesn't break" on mobile
+3. **Data handling:** Their API structure has some quirks (different pricing models for large skips) that needed careful handling
+
+## What I'd Add Next
+
+If this were a real project, I'd probably add:
+- Comparison tool (select multiple skips to compare side-by-side)
+- Availability calendar integration
+- More detailed size guides with real-world examples
+- Search/filter by specific requirements
+
+## Reflections
+
+This was a fun challenge! I tried to balance keeping the core functionality intact while making it feel completely fresh. The biggest win, I think, is the categorization - it makes the decision process much clearer for users.
+
+The animations and visual polish were important too, but not at the expense of usability. Everything still loads fast and works smoothly across devices.
+
+---
+
+Thanks for checking it out.
+
+**Built for REMWaste's Frontend Challenge**

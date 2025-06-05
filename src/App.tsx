@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Check, MapPin, Clock, Weight, Truck, Zap, Home, Building } from 'lucide-react';
 
 interface Skip {
@@ -116,18 +116,18 @@ const SkipSelector = () => {
             </div>
             
             {/* Skip size indicator with bounce animation */}
-            <div className={`absolute top-4 left-4 transition-all duration-300 ${
+            <div className={`absolute top-2 sm:top-4 left-2 sm:left-4 transition-all duration-300 ${
               isSelected || isHovered ? 'animate-bounce' : ''
             }`}>
-              <div className="bg-white bg-opacity-90 backdrop-blur-sm rounded-full px-4 py-2">
-                <span className="text-2xl font-bold text-gray-800">{skip.size}</span>
-                <span className="text-sm font-medium text-gray-600 ml-1">YD³</span>
+              <div className="bg-white bg-opacity-90 backdrop-blur-sm rounded-full px-2 sm:px-4 py-1 sm:py-2">
+                <span className="text-lg sm:text-2xl font-bold text-gray-800">{skip.size}</span>
+                <span className="text-xs sm:text-sm font-medium text-gray-600 ml-1">YD³</span>
               </div>
             </div>
             
             {/* Category badge */}
-            <div className="absolute top-4 right-4">
-              <div className="bg-black bg-opacity-20 backdrop-blur-sm rounded-full px-3 py-1">
+            <div className="absolute top-2 sm:top-4 right-2 sm:right-4">
+              <div className="bg-black bg-opacity-20 backdrop-blur-sm rounded-full px-2 sm:px-3 py-1">
                 <span className="text-white text-xs font-medium">
                   {getSkipCategoryName(category)}
                 </span>
@@ -155,25 +155,25 @@ const SkipSelector = () => {
           </div>
           
           {/* Content */}
-          <div className="p-6 pt-8">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold text-gray-900">
+          <div className="p-4 sm:p-6 pt-6 sm:pt-8">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900">
                 {skip.size} Yard Skip
               </h3>
               {isSelected && (
-                <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center animate-scale-in">
-                  <Check className="w-5 h-5 text-white" />
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-500 rounded-full flex items-center justify-center animate-scale-in">
+                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </div>
               )}
             </div>
             
             {/* Animated price */}
-            <div className="mb-4">
+            <div className="mb-3 sm:mb-4">
               <div className={`transition-all duration-300 ${isSelected ? 'scale-110' : ''}`}>
-                <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   £{calculateFinalPrice(skip.price_before_vat, skip.vat)}
                 </span>
-                <span className="text-sm text-gray-500 ml-2">inc. VAT</span>
+                <span className="text-xs sm:text-sm text-gray-500 ml-2">inc. VAT</span>
               </div>
               <div className="text-xs text-gray-400 mt-1">
                 £{(skip.price_before_vat / 100).toFixed(2)} + VAT
@@ -181,30 +181,30 @@ const SkipSelector = () => {
             </div>
             
             {/* Features with icons */}
-            <div className="space-y-3 mb-6">
-              <div className="flex items-center text-sm">
-                <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                  <Clock className="w-4 h-4 text-blue-600" />
+            <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+              <div className="flex items-center text-xs sm:text-sm">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-blue-100 flex items-center justify-center mr-2 sm:mr-3">
+                  <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" />
                 </div>
                 <span className="text-gray-700 font-medium">{skip.hire_period_days} days hire period</span>
               </div>
               
-              <div className="flex items-center text-sm">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${
+              <div className="flex items-center text-xs sm:text-sm">
+                <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 sm:mr-3 ${
                   skip.allowed_on_road ? 'bg-green-100' : 'bg-red-100'
                 }`}>
-                  <Truck className={`w-4 h-4 ${skip.allowed_on_road ? 'text-green-600' : 'text-red-600'}`} />
+                  <Truck className={`w-3 h-3 sm:w-4 sm:h-4 ${skip.allowed_on_road ? 'text-green-600' : 'text-red-600'}`} />
                 </div>
                 <span className={`font-medium ${skip.allowed_on_road ? 'text-green-700' : 'text-red-700'}`}>
                   {skip.allowed_on_road ? 'Road placement allowed' : 'Private property only'}
                 </span>
               </div>
               
-              <div className="flex items-center text-sm">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${
+              <div className="flex items-center text-xs sm:text-sm">
+                <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 sm:mr-3 ${
                   skip.allows_heavy_waste ? 'bg-orange-100' : 'bg-gray-100'
                 }`}>
-                  <Weight className={`w-4 h-4 ${skip.allows_heavy_waste ? 'text-orange-600' : 'text-gray-600'}`} />
+                  <Weight className={`w-3 h-3 sm:w-4 sm:h-4 ${skip.allows_heavy_waste ? 'text-orange-600' : 'text-gray-600'}`} />
                 </div>
                 <span className={`font-medium ${skip.allows_heavy_waste ? 'text-orange-700' : 'text-gray-700'}`}>
                   {skip.allows_heavy_waste ? 'Heavy waste accepted' : 'Light waste only'}
@@ -214,7 +214,7 @@ const SkipSelector = () => {
             
             {/* Select button */}
             <button
-              className={`w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
+              className={`w-full py-2 sm:py-3 px-3 sm:px-4 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base ${
                 isSelected
                   ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg transform scale-105'
                   : 'bg-gray-100 text-gray-700 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white hover:shadow-md'
@@ -226,7 +226,7 @@ const SkipSelector = () => {
             >
               {isSelected ? (
                 <span className="flex items-center justify-center">
-                  <Check className="w-4 h-4 mr-2" />
+                  <Check className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                   Selected
                 </span>
               ) : (
@@ -259,24 +259,24 @@ const SkipSelector = () => {
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
       {/* Floating header */}
       <div className="sticky top-0 z-30 bg-white bg-opacity-90 backdrop-blur-md border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                <Zap className="w-6 h-6 text-white" />
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                <Zap className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">Skip Selection</h1>
-                <div className="flex items-center text-sm text-gray-600">
-                  <MapPin className="w-4 h-4 mr-1" />
+                <h1 className="text-lg sm:text-xl font-bold text-gray-900">Skip Selection</h1>
+                <div className="flex items-center text-xs sm:text-sm text-gray-600">
+                  <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                   <span>NR32 - Lowestoft</span>
                 </div>
               </div>
             </div>
             
             {selectedSkipData && (
-              <div className="hidden md:flex items-center space-x-4 bg-blue-50 rounded-xl px-4 py-2">
-                <div className="text-sm">
+              <div className="hidden lg:flex items-center space-x-4 bg-blue-50 rounded-xl px-3 sm:px-4 py-2">
+                <div className="text-xs sm:text-sm">
                   <span className="text-gray-600">Selected:</span>
                   <span className="font-semibold text-blue-600 ml-1">
                     {selectedSkipData.size} Yard - £{calculateFinalPrice(selectedSkipData.price_before_vat, selectedSkipData.vat)}
@@ -288,58 +288,61 @@ const SkipSelector = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Hero section */}
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+        <div className="text-center mb-8 sm:mb-12 animate-fade-in">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-3 sm:mb-4">
             Choose Your Perfect Skip
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
             Select from our range of professional waste disposal solutions, 
             designed to meet every project need from home renovations to commercial developments.
           </p>
         </div>
 
         {/* Filter tabs */}
-        <div className="flex justify-center mb-8">
-          <div className="bg-white rounded-2xl shadow-lg p-2 flex space-x-2">
+        <div className="flex justify-center mb-6 sm:mb-8 px-4">
+          <div className="bg-white rounded-2xl shadow-lg p-1 sm:p-2 flex flex-wrap sm:flex-nowrap gap-1 sm:gap-2 w-full sm:w-auto overflow-x-auto">
             {['all', 'residential', 'commercial', 'industrial'].map((category) => (
               <button
                 key={category}
                 onClick={() => setFilterCategory(category)}
-                className={`px-6 py-3 rounded-xl font-medium transition-colors duration-200 flex items-center space-x-2 ${
+                className={`px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-medium transition-colors duration-200 flex items-center justify-center space-x-1 sm:space-x-2 text-xs sm:text-sm whitespace-nowrap flex-1 sm:flex-none ${
                   filterCategory === category
                     ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
                 }`}
               >
-                {category === 'all' && <Zap className="w-4 h-4" />}
-                {category === 'residential' && <Home className="w-4 h-4" />}
-                {category === 'commercial' && <Building className="w-4 h-4" />}
-                {category === 'industrial' && <Truck className="w-4 h-4" />}
-                <span className="capitalize">{getSkipCategoryName(category)}</span>
+                {category === 'all' && <Zap className="w-3 h-3 sm:w-4 sm:h-4" />}
+                {category === 'residential' && <Home className="w-3 h-3 sm:w-4 sm:h-4" />}
+                {category === 'commercial' && <Building className="w-3 h-3 sm:w-4 sm:h-4" />}
+                {category === 'industrial' && <Truck className="w-3 h-3 sm:w-4 sm:h-4" />}
+                <span className="capitalize hidden sm:inline">{getSkipCategoryName(category)}</span>
+                <span className="capitalize sm:hidden">
+                  {category === 'all' ? 'All' : category === 'residential' ? 'Home' : category === 'commercial' ? 'Biz' : 'Ind'}
+                </span>
               </button>
             ))}
           </div>
         </div>
 
         {/* Skip grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12 px-4 sm:px-0">
           {filteredSkips.map((skip) => (
             <SkipContainer key={skip.id} skip={skip} />
           ))}
         </div>
 
         {/* Bottom navigation */}
-        <div className="sticky bottom-4 z-20">
-          <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 p-6 mx-auto max-w-4xl">
-            <div className="flex items-center justify-between">
-              <button className="flex items-center px-6 py-3 text-gray-600 hover:text-gray-800 transition-colors rounded-xl hover:bg-gray-100">
-                <ChevronLeft className="w-5 h-5 mr-2" />
+        <div className="sticky bottom-0 sm:bottom-4 z-20 px-4 sm:px-0">
+          <div className="bg-white rounded-none sm:rounded-2xl shadow-2xl border-t sm:border border-gray-200 p-4 sm:p-6 mx-auto max-w-4xl">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
+              <button className="flex items-center px-4 sm:px-6 py-2 sm:py-3 text-gray-600 hover:text-gray-800 transition-colors rounded-xl hover:bg-gray-100 text-sm sm:text-base order-2 sm:order-1">
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 <span className="font-medium">Back to Waste Type</span>
               </button>
 
-              <div className="hidden md:block">
+              <div className="hidden lg:block order-1 sm:order-2">
                 {selectedSkipData ? (
                   <div className="text-center">
                     <p className="text-sm text-gray-600 mb-1">Ready to continue with</p>
@@ -352,8 +355,18 @@ const SkipSelector = () => {
                 )}
               </div>
 
+              {/* Mobile selected skip display */}
+              {selectedSkipData && (
+                <div className="lg:hidden w-full order-1 sm:order-2 text-center bg-blue-50 rounded-lg p-3">
+                  <p className="text-xs text-gray-600 mb-1">Selected:</p>
+                  <p className="font-semibold text-blue-600 text-sm">
+                    {selectedSkipData.size} Yard Skip - £{calculateFinalPrice(selectedSkipData.price_before_vat, selectedSkipData.vat)}
+                  </p>
+                </div>
+              )}
+
               <button
-                className={`flex items-center px-8 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                className={`flex items-center px-6 sm:px-8 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base order-3 w-full sm:w-auto justify-center ${
                   selectedSkip
                     ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:shadow-lg hover:scale-105'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -361,14 +374,14 @@ const SkipSelector = () => {
                 disabled={!selectedSkip}
               >
                 <span className="font-medium">Continue to Permit Check</span>
-                <ChevronRight className="w-5 h-5 ml-2" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fade-in {
           from {
             opacity: 0;
