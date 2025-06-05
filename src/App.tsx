@@ -61,9 +61,9 @@ const SkipSelector = () => {
 
   const getSkipImage = (category: string) => {
     switch(category) {
-      case 'residential': return '/bin1.png';
-      case 'commercial': return '/bin2.png';
-      case 'industrial': return '/bin3.png';
+      case 'residential': return '/images/bin1.png';
+      case 'commercial': return '/images/bin2.png';
+      case 'industrial': return '/images/bin3.png';
       default: return '/bin1.png';
     }
   };
