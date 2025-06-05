@@ -19,8 +19,6 @@ const SkipSelector = () => {
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [isLoading, setIsLoading] = useState(true);
 
-
-
   useEffect(() => {
     const fetchSkips = async () => {
       setIsLoading(true);
@@ -33,7 +31,6 @@ const SkipSelector = () => {
         setSkips(data);
       } catch (error) {
         console.error('Error fetching skip data:', error);
-        // Set empty array if API fails - you could add error UI here
         setSkips([]);
       } finally {
         setIsLoading(false);
@@ -59,6 +56,15 @@ const SkipSelector = () => {
       case 'commercial': return 'Commercial';
       case 'industrial': return 'Industrial';
       default: return 'All';
+    }
+  };
+
+  const getSkipImage = (category: string) => {
+    switch(category) {
+      case 'residential': return '/bin1.png';
+      case 'commercial': return '/bin2.png';
+      case 'industrial': return '/bin3.png';
+      default: return '/bin1.png';
     }
   };
 
@@ -134,22 +140,16 @@ const SkipSelector = () => {
               </div>
             </div>
             
-            {/* Skip 3D representation */}
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-2">
+            {/* Skip image */}
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-4">
               <div className={`transition-all duration-500 ${
                 isHovered ? 'scale-110 -rotate-3' : 'scale-100'
               }`}>
-                <div className="relative">
-                  {/* Skip container */}
-                  <div className="w-20 h-16 bg-yellow-400 rounded-t-lg border-2 border-yellow-600 relative overflow-hidden">
-                    <div className="absolute inset-1 bg-yellow-300 rounded-t-md">
-                      <div className="w-full h-full bg-gradient-to-b from-yellow-200 to-yellow-400 opacity-60" />
-                    </div>
-                    {/* Skip handles */}
-                    <div className="absolute -left-1 top-2 w-2 h-6 bg-yellow-600 rounded-l-sm" />
-                    <div className="absolute -right-1 top-2 w-2 h-6 bg-yellow-600 rounded-r-sm" />
-                  </div>
-                </div>
+                <img 
+                  src={getSkipImage(category)} 
+                  alt={`${getSkipCategoryName(category)} Skip`}
+                  className="w-30 h-20 mb-5object-contain drop-shadow-lg"
+                />
               </div>
             </div>
           </div>
